@@ -11,22 +11,22 @@ jobs:
           - release_for: LINUX-x86_64
             os: ubuntu-20.04
             target: x86_64-unknown-linux-musl
-            bin: precious
-            name: linux-x86_64.tar.gz
+            bin: evm-address-generator
+            name: evm-address-generator-linux-x86_64.tar.gz
             command: build
 
           - release_for: Windows-x86_64
             os: windows-latest
             target: x86_64-pc-windows-msvc
-            bin: precious.exe
-            name: precious-Windows-x86_64.zip
+            bin: evm-address-generator.exe
+            name: evm-address-generator-Windows-x86_64.zip
             command: both
 
           - release_for: macOS-x86_64
             os: macOS-latest
             target: x86_64-apple-darwin
-            bin: precious
-            name: precious-Darwin-x86_64.tar.gz
+            bin: evm-address-generator
+            name: evm-address-generator-Darwin-x86_64.tar.gz
             command: both
 
             # more release targets here ...
@@ -46,11 +46,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: ${{ matrix.platform.name }}
-            path: ./target/${{ matrix.platform.target }}/evm-address-generator.exe
+            path: ./target/${{ matrix.platform.target }}/release/evm-address-generator.exe
         if: contains(matrix.platform.os, 'windows')
 
       - name: Upload for unix
         uses: actions/upload-artifact@v3
         with:
             name: ${{ matrix.platform.name }}
-            path: ${{ matrix.platform.bin }}
+            path: target/${{ matrix.platform.target }}/release/evm-address-generator
