@@ -53,4 +53,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: ${{ matrix.platform.name }}
-            path: ./target/${{ matrix.platform.target }}/evm-address-generator
+            path: ${{ matrix.platform.bin }}
